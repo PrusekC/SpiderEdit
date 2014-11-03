@@ -33,10 +33,34 @@ void showOpenFileDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
         }
     }
 
+    file.close();
+
     gtk_widget_destroy(openFileDialog);
 }
 
-//
+void showSaveFileAsDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
+{
+    GtkWidget *openFileDialog;
+    openFileDialog = gtk_file_chooser_dialog_new("Save file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_OPEN,GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
+    gtk_dialog_run(GTK_DIALOG(openFileDialog));
+
+    const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(openFileDialog));
+
+    ofstream file(filename);
+    string bufferText;
+    GtkTextIter startIter;
+    GtkTextIter endIter;
+
+    gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(buffer), &startIter);
+    gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(buffer), &endIter);
+    bufferText = gtk_text_buffer_get_text(buffer, &startIter, &endIter, 1);
+
+    file << bufferText;
+    file.close();
+
+    gtk_widget_destroy(openFileDialog);
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -83,7 +107,7 @@ int main(int argc, char *argv[])
     newFile = gtk_menu_item_new_with_label("New file");
     openFile = gtk_menu_item_new_with_label("Open file");
     saveFile = gtk_menu_item_new_with_label("Save file");
-    saveFileAs = gtk_menu_item_new_with_label("Save file as...");
+    saveFileAs = gtk_menu_item_new_with_label("Save file as ...");
     quit = gtk_menu_item_new_with_label("Quit");
 
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(file), fileMenu);
@@ -108,6 +132,7 @@ int main(int argc, char *argv[])
 
     // Menu actions
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), textBuffer);
+    g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), textBuffer);
     g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), NULL);
 
 
