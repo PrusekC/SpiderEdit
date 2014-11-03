@@ -15,7 +15,7 @@ void spiderEditClose()
 void showOpenFileDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
 {
     GtkWidget *openFileDialog;
-    openFileDialog = gtk_file_chooser_dialog_new("Open file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_OPEN,GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
+    openFileDialog = gtk_file_chooser_dialog_new("Open file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_OPEN, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
     gtk_dialog_run(GTK_DIALOG(openFileDialog));
 
     const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(openFileDialog));
@@ -38,13 +38,16 @@ void showOpenFileDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
     gtk_widget_destroy(openFileDialog);
 }
 
-void showSaveFileAsDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
+void showSaveFileAsDialog(GtkMenuItem *saveFileAs, GtkTextBuffer *buffer)
 {
-    GtkWidget *openFileDialog;
-    openFileDialog = gtk_file_chooser_dialog_new("Save file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_OPEN,GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
-    gtk_dialog_run(GTK_DIALOG(openFileDialog));
+    GtkWidget *saveFileDialog;
+    saveFileDialog = gtk_file_chooser_dialog_new("Save file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_SAVE, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
 
-    const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(openFileDialog));
+    gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(saveFileDialog), true);
+    gtk_dialog_run(GTK_DIALOG(saveFileDialog));
+
+    const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(saveFileDialog));
+
 
     ofstream file(filename);
     string bufferText;
@@ -58,7 +61,7 @@ void showSaveFileAsDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
     file << bufferText;
     file.close();
 
-    gtk_widget_destroy(openFileDialog);
+    gtk_widget_destroy(saveFileDialog);
 }
 
 
