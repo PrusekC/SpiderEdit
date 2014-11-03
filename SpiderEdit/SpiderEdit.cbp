@@ -49,6 +49,10 @@
 			<Add directory="$(#gtk.lib)" />
 		</Linker>
 		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="showOpenFileDialog.cpp" />
+		<Unit filename="showSaveFileAsDialog.cpp" />
+		<Unit filename="spiderEditClose.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

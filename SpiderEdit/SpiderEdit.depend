@@ -2475,10 +2475,22 @@
 	<string>
 	<vector>
 
-1414957648 source:c:\git\spideredit\main.cpp
+1415046315 source:c:\git\spideredit\main.cpp
+	"main.h"
+
+1415046289 source:c:\git\spideredit\spidereditclose.cpp
+	"main.h"
+
+1415046465 c:\git\spideredit\main.h
 	<gtk/gtk.h>
 	<iostream>
 	<fstream>
 	<string>
 	<vector>
+
+1415046303 source:c:\git\spideredit\showopenfiledialog.cpp
+	"main.h"
+
+1415046345 source:c:\git\spideredit\showsavefileasdialog.cpp
+	"main.h"
 

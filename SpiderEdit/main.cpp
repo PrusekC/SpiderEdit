@@ -1,69 +1,4 @@
-#include <gtk/gtk.h>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-
-using namespace std;
-
-void spiderEditClose()
-{
-    gtk_main_quit();
-}
-
-
-void showOpenFileDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer)
-{
-    GtkWidget *openFileDialog;
-    openFileDialog = gtk_file_chooser_dialog_new("Open file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_OPEN, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
-    gtk_dialog_run(GTK_DIALOG(openFileDialog));
-
-    const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(openFileDialog));
-
-    ifstream file(filename);
-    string line;
-    if(file.is_open())
-    {
-        while(getline(file, line))
-        {
-            line += "\n";
-            GtkTextIter endOfTextInput;
-            gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(buffer), &endOfTextInput);
-            gtk_text_buffer_insert(buffer, &endOfTextInput, line.c_str(), line.size());
-        }
-    }
-
-    file.close();
-
-    gtk_widget_destroy(openFileDialog);
-}
-
-void showSaveFileAsDialog(GtkMenuItem *saveFileAs, GtkTextBuffer *buffer)
-{
-    GtkWidget *saveFileDialog;
-    saveFileDialog = gtk_file_chooser_dialog_new("Save file", GTK_WINDOW(NULL), GTK_FILE_CHOOSER_ACTION_SAVE, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
-
-    gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(saveFileDialog), true);
-    gtk_dialog_run(GTK_DIALOG(saveFileDialog));
-
-    const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(saveFileDialog));
-
-
-    ofstream file(filename);
-    string bufferText;
-    GtkTextIter startIter;
-    GtkTextIter endIter;
-
-    gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(buffer), &startIter);
-    gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(buffer), &endIter);
-    bufferText = gtk_text_buffer_get_text(buffer, &startIter, &endIter, 1);
-
-    file << bufferText;
-    file.close();
-
-    gtk_widget_destroy(saveFileDialog);
-}
-
+#include "main.h"
 
 int main(int argc, char *argv[])
 {
@@ -137,7 +72,6 @@ int main(int argc, char *argv[])
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), textBuffer);
     g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), textBuffer);
     g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), NULL);
-
 
     gtk_widget_show_all(window);
 
