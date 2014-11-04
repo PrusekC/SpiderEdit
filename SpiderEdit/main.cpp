@@ -22,6 +22,10 @@ int main(int argc, char *argv[])
     GtkWidget *textInput;
     GtkTextBuffer *textBuffer;
 
+    // Others
+    bool isSaved = true;
+    string fileLocation = "x";
+
     gtk_init(&argc, &argv);
 
     // Create the window
@@ -68,8 +72,14 @@ int main(int argc, char *argv[])
     gtk_box_pack_start(GTK_BOX (vbox), textInput, 1, 1, 0);
     textBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW (textInput));
 
+   // g_object_set_data(fileData, "textBuffer", textBuffer);
+   // g_object_set_data(fileData, "fileLocation", &fileLocation);
+
+   fileData data(fileLocation, textBuffer);
+
     // Menu actions
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), textBuffer);
+    g_signal_connect(G_OBJECT(saveFile), "activate", G_CALLBACK(showSaveFileDialog), &data);
     g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), textBuffer);
     g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), NULL);
 
