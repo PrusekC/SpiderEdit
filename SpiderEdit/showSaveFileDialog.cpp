@@ -3,9 +3,9 @@
 void showSaveFileDialog(GtkMenuItem *saveFileAs, fileData *data)
 {
 
-    if(data->tmpFileLocation->size() > 1)
+    if(data->tmpFileLocation.size() > 1)
     {
-        ofstream file(data->tmpFileLocation->c_str());
+        ofstream file(data->tmpFileLocation.c_str());
         string bufferText;
         GtkTextIter startIter;
         GtkTextIter endIter;

@@ -24,8 +24,7 @@ void showOpenFileDialog(GtkMenuItem *openFile, fileData *data)
 
     file.close();
 
-//    data->tmpFileLocation = tmpLocationString;
-  //  cout << data->tmpFileLocation;
+    data->tmpFileLocation = tmpLocationString; // Save adres to file
 
     gtk_widget_destroy(openFileDialog);
 }

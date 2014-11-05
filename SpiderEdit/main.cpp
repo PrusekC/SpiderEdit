@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     gtk_box_pack_start(GTK_BOX (vbox), textInput, 1, 1, 0);
     textBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW (textInput));
 
-    fileData data(&fileLocation, textBuffer);
+    fileData data(fileLocation, textBuffer);
 
     // Menu actions
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), &data);

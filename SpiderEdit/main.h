@@ -7,10 +7,10 @@
 using namespace std;
 
 struct fileData{
-    string *tmpFileLocation;
+    string tmpFileLocation;
     GtkTextBuffer *tmpTextBuffer;
 
-    fileData(string *location, GtkTextBuffer *buffer)
+    fileData(string location, GtkTextBuffer *buffer)
     {
         tmpFileLocation = location;
         tmpTextBuffer = buffer;
