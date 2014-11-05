@@ -10,7 +10,6 @@ void showSaveFileAsDialog(GtkMenuItem *saveFileAs, GtkTextBuffer *buffer)
 
     const gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(saveFileDialog));
 
-
     ofstream file(filename);
     string bufferText;
     GtkTextIter startIter;

@@ -2,9 +2,23 @@
 
 void showSaveFileDialog(GtkMenuItem *saveFileAs, fileData *data)
 {
-   // GtkEntry *textBufferEntry = g_object_get_data(fileData, "textBuffer");
-   // GtkEntry *fileLocationEntry = g_object_get_data(fileData, "fileLocation");
 
-   cout << data->tmpFileLocation;
+    if(data->tmpFileLocation->size() > 1)
+    {
+        ofstream file(data->tmpFileLocation->c_str());
+        string bufferText;
+        GtkTextIter startIter;
+        GtkTextIter endIter;
 
+        gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(data->tmpTextBuffer), &startIter);
+        gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(data->tmpTextBuffer), &endIter);
+        bufferText = gtk_text_buffer_get_text(data->tmpTextBuffer, &startIter, &endIter, 1);
+
+        file << bufferText;
+        file.close();
+    }
+    else
+    {
+        cout << "Okno dialogowe zapisywania";
+    }
 }

@@ -7,10 +7,10 @@
 using namespace std;
 
 struct fileData{
-    string tmpFileLocation;
+    string *tmpFileLocation;
     GtkTextBuffer *tmpTextBuffer;
 
-    fileData(string location, GtkTextBuffer *buffer)
+    fileData(string *location, GtkTextBuffer *buffer)
     {
         tmpFileLocation = location;
         tmpTextBuffer = buffer;
@@ -18,6 +18,6 @@ struct fileData{
 };
 
 void spiderEditClose();
-void showOpenFileDialog(GtkMenuItem *openFile, GtkTextBuffer *buffer);
+void showOpenFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileAsDialog(GtkMenuItem *saveFileAs, GtkTextBuffer *buffer);
