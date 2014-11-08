@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
     GtkTextBuffer *textBuffer;
 
     // Others
-    bool isSaved = true;
     string fileLocation = " ";
     gtk_init(&argc, &argv);
 
