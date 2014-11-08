@@ -1,4 +1,5 @@
 #include "main.h"
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,7 @@ int main(int argc, char *argv[])
     // Create the window
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "SpiderEdit");
+    gtk_window_set_icon(GTK_WINDOW(window), gdk_pixbuf_new_from_file("icon.png", NULL));
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect_swapped(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
