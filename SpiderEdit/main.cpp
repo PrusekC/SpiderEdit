@@ -3,6 +3,7 @@
 int main(int argc, char *argv[])
 {
     GtkWidget *window;
+    GtkWidget *scrolledWindow;
     GtkWidget *vbox;
 
     // menu bar
@@ -32,6 +33,8 @@ int main(int argc, char *argv[])
     gtk_window_set_title(GTK_WINDOW(window), "SpiderEdit");
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect_swapped(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+
+    scrolledWindow = gtk_scrolled_window_new(NULL, NULL);
 
     // Create vbox
     vbox = gtk_vbox_new (FALSE, 2);
@@ -66,9 +69,12 @@ int main(int argc, char *argv[])
 
     gtk_box_pack_start(GTK_BOX(vbox), menuBar, 0, 0, 1);
 
-    //Create text input field
+    //Create text input field inside scrolledWindow
     textInput = gtk_text_view_new();
-    gtk_box_pack_start(GTK_BOX (vbox), textInput, 1, 1, 0);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_box_pack_start(GTK_BOX(vbox), scrolledWindow, 1, 1, 0);
+
+    gtk_container_add(GTK_CONTAINER(scrolledWindow), textInput);
     textBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW (textInput));
 
     fileData data(fileLocation, textBuffer);
