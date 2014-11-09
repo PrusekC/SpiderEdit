@@ -21,7 +21,7 @@ struct fileData{
     }
 };
 
-void spiderEditClose();
+void spiderEditClose(GtkMenuItem *quit, fileData *data);
 void showOpenFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileAsDialog(GtkMenuItem *saveFileAs, GtkTextBuffer *buffer);

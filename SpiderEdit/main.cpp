@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), &data);
     g_signal_connect(G_OBJECT(saveFile), "activate", G_CALLBACK(showSaveFileDialog), &data);
     g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), textBuffer);
-    g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), NULL);
+    g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), &data);
 
     // TextBuffer changed
     g_signal_connect(G_OBJECT(textBuffer), "changed", G_CALLBACK(textBufferChanged), &data);
