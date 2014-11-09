@@ -27,6 +27,7 @@ void showOpenFileDialog(GtkMenuItem *openFile, fileData *data)
         string line;
         if(file.is_open())
         {
+            gtk_text_buffer_set_text(data->tmpTextBuffer, "", 0); // clear text buffer first
             while(getline(file, line))
             {
                 line += "\n";
