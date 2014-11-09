@@ -1,6 +1,8 @@
 #include "main.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+/// TODO: FIX RUNTIMEERROR WHEN USER CLOSES THE DIALOG
+
 int main(int argc, char *argv[])
 {
     GtkWidget *window;

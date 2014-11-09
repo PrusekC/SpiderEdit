@@ -15,7 +15,7 @@ struct fileData{
     {
         tmpFileLocation = location;
         tmpTextBuffer = buffer;
-        isSaved = false;
+        isSaved = true;
     }
 };
 
