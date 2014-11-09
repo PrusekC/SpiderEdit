@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
     GtkWidget *window;
     GtkWidget *scrolledWindow;
     GtkWidget *vbox;
+    GtkWidget *statusBar;
 
     // menu bar
     GtkWidget *menuBar;
@@ -28,6 +29,8 @@ int main(int argc, char *argv[])
 
     // Others
     string fileLocation = " ";
+
+
     gtk_init(&argc, &argv);
 
     // Create the window
@@ -36,6 +39,7 @@ int main(int argc, char *argv[])
     gtk_window_set_icon(GTK_WINDOW(window), gdk_pixbuf_new_from_file("icon.png", NULL));
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect_swapped(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    statusBar = gtk_statusbar_new();
 
     scrolledWindow = gtk_scrolled_window_new(NULL, NULL);
 
@@ -80,7 +84,12 @@ int main(int argc, char *argv[])
     gtk_container_add(GTK_CONTAINER(scrolledWindow), textInput);
     textBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW (textInput));
 
-    fileData data(fileLocation, textBuffer);
+    // set statusbar
+
+    gtk_box_pack_start(GTK_BOX(vbox), statusBar, 0, 0, 0);
+
+    // create struct with currently opened file datas
+    fileData data(fileLocation, textBuffer, statusBar);
 
     // Menu actions
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), &data);

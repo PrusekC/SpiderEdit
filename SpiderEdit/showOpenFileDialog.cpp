@@ -39,6 +39,7 @@ void showOpenFileDialog(GtkMenuItem *openFile, fileData *data)
         file.close();
 
         data->tmpFileLocation = tmpLocationString; // Save file location
+        gtk_statusbar_push(GTK_STATUSBAR(data->tmpStatusBar), gtk_statusbar_get_context_id(GTK_STATUSBAR(data->tmpStatusBar), "info"), tmpLocationString.c_str());
 
         gtk_widget_destroy(openFileDialog);
     }

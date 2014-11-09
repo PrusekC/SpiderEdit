@@ -9,12 +9,14 @@ using namespace std;
 struct fileData{
     string tmpFileLocation;
     GtkTextBuffer *tmpTextBuffer;
+    GtkWidget *tmpStatusBar;
     bool isSaved;
 
-    fileData(string location, GtkTextBuffer *buffer)
+    fileData(string location, GtkTextBuffer *buffer, GtkWidget *statusBar)
     {
         tmpFileLocation = location;
         tmpTextBuffer = buffer;
+        tmpStatusBar = statusBar;
         isSaved = true;
     }
 };
