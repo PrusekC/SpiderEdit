@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     textBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW (textInput));
 
     // set statusbar
-
+    gtk_statusbar_push(GTK_STATUSBAR(statusBar), gtk_statusbar_get_context_id(GTK_STATUSBAR(statusBar), "info"), "New file");
     gtk_box_pack_start(GTK_BOX(vbox), statusBar, 0, 0, 0);
 
     // create struct with currently opened file datas
