@@ -1,8 +1,6 @@
 #include "main.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-/// TODO: FIX RUNTIMEERROR WHEN USER CLOSES THE DIALOG
-
 int main(int argc, char *argv[])
 {
     GtkWidget *window;
@@ -24,6 +22,7 @@ int main(int argc, char *argv[])
     GtkWidget *saveFileAs;
     GtkWidget *quit;
 
+    // Text input
     GtkWidget *textInput;
     GtkTextBuffer *textBuffer;
 
@@ -96,6 +95,9 @@ int main(int argc, char *argv[])
     g_signal_connect(G_OBJECT(saveFile), "activate", G_CALLBACK(showSaveFileDialog), &data);
     g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), textBuffer);
     g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), NULL);
+
+    // TextBuffer changed
+    g_signal_connect(G_OBJECT(textBuffer), "changed", G_CALLBACK(textBufferChanged), &data);
 
     gtk_widget_show_all(window);
 

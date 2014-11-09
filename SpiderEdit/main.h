@@ -25,3 +25,5 @@ void spiderEditClose();
 void showOpenFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileAsDialog(GtkMenuItem *saveFileAs, GtkTextBuffer *buffer);
+
+void textBufferChanged(GtkTextBuffer *buffer, fileData *data);
