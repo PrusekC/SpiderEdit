@@ -2475,14 +2475,14 @@
 	<string>
 	<vector>
 
-1415612079 source:c:\git\spideredit\main.cpp
+1415636247 source:c:\git\spideredit\main.cpp
 	"main.h"
 	<gdk-pixbuf/gdk-pixbuf.h>
 
-1415611419 source:c:\git\spideredit\spidereditclose.cpp
+1415614151 source:c:\git\spideredit\spidereditclose.cpp
 	"main.h"
 
-1415614037 c:\git\spideredit\main.h
+1415636597 c:\git\spideredit\main.h
 	<gtk/gtk.h>
 	<iostream>
 	<fstream>
@@ -2492,15 +2492,18 @@
 1415555936 source:c:\git\spideredit\showopenfiledialog.cpp
 	"main.h"
 
-1415527415 source:c:\git\spideredit\showsavefileasdialog.cpp
+1415635794 source:c:\git\spideredit\showsavefileasdialog.cpp
 	"main.h"
 
 1415134680 source:c:\git\spideredit\filedata.cpp
 	"main.h"
 
-1415611284 source:c:\git\spideredit\showsavefiledialog.cpp
+1415635784 source:c:\git\spideredit\showsavefiledialog.cpp
 	"main.h"
 
 1415540690 source:c:\git\spideredit\textbufferchanged.cpp
+	"main.h"
+
+1415635178 source:c:\git\spideredit\newfile.cpp
 	"main.h"
 

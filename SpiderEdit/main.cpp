@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), saveFileAs);
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quit);
 
-    gtk_box_pack_start(GTK_BOX(vbox), menuBar, 0, 0, 1);
+    gtk_box_pack_start(GTK_BOX(vbox), menuBar, 0, 0, 0);
 
     //Create text input field inside scrolledWindow
     textInput = gtk_text_view_new();
@@ -90,9 +90,10 @@ int main(int argc, char *argv[])
     fileData data(fileLocation, textBuffer, statusBar);
 
     // Menu actions
+    g_signal_connect(G_OBJECT(newFile), "activate", G_CALLBACK(newFileCreate), &data);
     g_signal_connect(G_OBJECT(openFile), "activate", G_CALLBACK(showOpenFileDialog), &data);
     g_signal_connect(G_OBJECT(saveFile), "activate", G_CALLBACK(showSaveFileDialog), &data);
-    g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), textBuffer);
+    g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), &data);
     g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), &data);
 
     // TextBuffer changed

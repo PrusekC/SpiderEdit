@@ -24,7 +24,7 @@ struct fileData{
 void spiderEditClose(GtkMenuItem *quit, fileData *data);
 void spiderEditCloseByX(GtkWindow *window, GdkEvent *event, fileData *data);
 
-void newFile(GtkMenuItem *newFile, fileData *data);
+void newFileCreate(GtkMenuItem *newFile, fileData *data);
 void showOpenFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileDialog(GtkMenuItem *saveFile, fileData *data);
 void showSaveFileAsDialog(GtkMenuItem *saveFileAs, fileData *data);

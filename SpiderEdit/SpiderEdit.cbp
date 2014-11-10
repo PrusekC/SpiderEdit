@@ -51,6 +51,7 @@
 		</Linker>
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="newFile.cpp" />
 		<Unit filename="showOpenFileDialog.cpp" />
 		<Unit filename="showSaveFileAsDialog.cpp" />
 		<Unit filename="showSaveFileDialog.cpp" />
