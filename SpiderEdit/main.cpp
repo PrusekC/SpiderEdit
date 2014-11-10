@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
     gtk_window_set_title(GTK_WINDOW(window), "SpiderEdit");
     gtk_window_set_icon(GTK_WINDOW(window), gdk_pixbuf_new_from_file("icon.png", NULL));
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
-    g_signal_connect_swapped(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     statusBar = gtk_statusbar_new();
 
     scrolledWindow = gtk_scrolled_window_new(NULL, NULL);
@@ -98,6 +97,9 @@ int main(int argc, char *argv[])
 
     // TextBuffer changed
     g_signal_connect(G_OBJECT(textBuffer), "changed", G_CALLBACK(textBufferChanged), &data);
+
+    // User closed app by clicking red X mark on title bar
+    g_signal_connect(G_OBJECT(window), "delete-event", G_CALLBACK(spiderEditCloseByX), &data);
 
     gtk_widget_show_all(window);
 

@@ -18,3 +18,7 @@ void spiderEditClose(GtkMenuItem *quit, fileData *data)
     gtk_main_quit();
 }
 
+void spiderEditCloseByX(GtkWindow *window, GdkEvent *event, fileData *data)
+{
+    spiderEditClose(NULL, data);
+}

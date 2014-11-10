@@ -2,7 +2,6 @@
 
 void showSaveFileDialog(GtkMenuItem *saveFileAs, fileData *data)
 {
-
     if(data->tmpFileLocation.size() > 1)
     {
         ofstream file(data->tmpFileLocation.c_str());
