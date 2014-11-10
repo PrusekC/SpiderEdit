@@ -1,6 +1,6 @@
 #include "main.h"
 
-void showSaveFileDialog(GtkMenuItem *saveFileAs, fileData *data)
+void showSaveFileDialog(GtkMenuItem *saveFile, fileData *data)
 {
     if(data->tmpFileLocation.size() > 1)
     {
@@ -46,4 +46,6 @@ void showSaveFileDialog(GtkMenuItem *saveFileAs, fileData *data)
             gtk_widget_destroy(saveFileDialog);
         }
     }
+    data->isSaved = true;
+    gtk_statusbar_push(GTK_STATUSBAR(data->tmpStatusBar), gtk_statusbar_get_context_id(GTK_STATUSBAR(data->tmpStatusBar), "info"), data->tmpFileLocation.c_str());
 }
