@@ -13,7 +13,9 @@ int main(int argc, char *argv[])
     GtkWidget *file;
     GtkWidget *fileMenu;
     GtkWidget *edit;
+    GtkWidget *editMenu;
     GtkWidget *help;
+    GtkWidget *helpMenu;
 
     // File submenu
     GtkWidget *newFile;
@@ -21,6 +23,9 @@ int main(int argc, char *argv[])
     GtkWidget *saveFile;
     GtkWidget *saveFileAs;
     GtkWidget *quit;
+
+    // Help submenu
+    GtkWidget *about;
 
     // Text input
     GtkWidget *textInput;
@@ -48,18 +53,24 @@ int main(int argc, char *argv[])
     // Create menu bar
     menuBar = gtk_menu_bar_new();
     fileMenu = gtk_menu_new();
+    editMenu = gtk_menu_new();
+    helpMenu = gtk_menu_new();
 
     // Menu labels
     file = gtk_menu_item_new_with_label("File");
     edit = gtk_menu_item_new_with_label("Edit");
     help = gtk_menu_item_new_with_label("Help");
+
     newFile = gtk_menu_item_new_with_label("New file");
     openFile = gtk_menu_item_new_with_label("Open file");
     saveFile = gtk_menu_item_new_with_label("Save file");
     saveFileAs = gtk_menu_item_new_with_label("Save file as ...");
     quit = gtk_menu_item_new_with_label("Quit");
 
+    about = gtk_menu_item_new_with_label("About");
+
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(file), fileMenu);
+    gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), helpMenu);
 
     // Organize menu
     gtk_menu_shell_append(GTK_MENU_SHELL(menuBar), file);
@@ -71,6 +82,8 @@ int main(int argc, char *argv[])
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), saveFile);
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), saveFileAs);
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quit);
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(helpMenu), about);
 
     gtk_box_pack_start(GTK_BOX(vbox), menuBar, 0, 0, 0);
 
@@ -95,6 +108,8 @@ int main(int argc, char *argv[])
     g_signal_connect(G_OBJECT(saveFile), "activate", G_CALLBACK(showSaveFileDialog), &data);
     g_signal_connect(G_OBJECT(saveFileAs), "activate", G_CALLBACK(showSaveFileAsDialog), &data);
     g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(spiderEditClose), &data);
+
+    g_signal_connect(G_OBJECT(about), "activate", G_CALLBACK(showAboutDialog), NULL);
 
     // TextBuffer changed
     g_signal_connect(G_OBJECT(textBuffer), "changed", G_CALLBACK(textBufferChanged), &data);

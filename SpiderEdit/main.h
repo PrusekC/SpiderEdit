@@ -29,4 +29,6 @@ void showOpenFileDialog(GtkMenuItem *openFile, fileData *data);
 void showSaveFileDialog(GtkMenuItem *saveFile, fileData *data);
 void showSaveFileAsDialog(GtkMenuItem *saveFileAs, fileData *data);
 
+void showAboutDialog(GtkMenuItem *about);
+
 void textBufferChanged(GtkTextBuffer *buffer, fileData *data);
