@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
     GtkWidget *saveFileAs;
     GtkWidget *quit;
 
+    // Edit submenu
+    GtkWidget *wrapWords;
+
     // Help submenu
     GtkWidget *about;
 
@@ -67,9 +70,12 @@ int main(int argc, char *argv[])
     saveFileAs = gtk_menu_item_new_with_label("Save file as ...");
     quit = gtk_menu_item_new_with_label("Quit");
 
+    wrapWords = gtk_check_menu_item_new_with_label("Wrap words");
+
     about = gtk_menu_item_new_with_label("About");
 
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(file), fileMenu);
+    gtk_menu_item_set_submenu(GTK_MENU_ITEM(edit), editMenu);
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), helpMenu);
 
     // Organize menu
@@ -82,6 +88,8 @@ int main(int argc, char *argv[])
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), saveFile);
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), saveFileAs);
     gtk_menu_shell_append(GTK_MENU_SHELL(fileMenu), quit);
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(editMenu), wrapWords);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(helpMenu), about);
 
@@ -100,7 +108,7 @@ int main(int argc, char *argv[])
     gtk_box_pack_start(GTK_BOX(vbox), statusBar, 0, 0, 0);
 
     // create struct with currently opened file datas
-    fileData data(fileLocation, textBuffer, statusBar);
+    fileData data(fileLocation, textInput, textBuffer, statusBar);
 
     // Menu actions
     g_signal_connect(G_OBJECT(newFile), "activate", G_CALLBACK(newFileCreate), &data);
@@ -113,6 +121,9 @@ int main(int argc, char *argv[])
 
     // TextBuffer changed
     g_signal_connect(G_OBJECT(textBuffer), "changed", G_CALLBACK(textBufferChanged), &data);
+
+    // Wrap words menu item clicked
+    g_signal_connect(G_OBJECT(wrapWords), "toggled", G_CALLBACK(wrapWordsToogled), &data);
 
     // User closed app by clicking red X mark on title bar
     g_signal_connect(G_OBJECT(window), "delete-event", G_CALLBACK(spiderEditCloseByX), &data);

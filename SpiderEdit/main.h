@@ -8,16 +8,20 @@ using namespace std;
 
 struct fileData{
     string tmpFileLocation;
+    GtkWidget *tmpTextInput;
     GtkTextBuffer *tmpTextBuffer;
     GtkWidget *tmpStatusBar;
     bool isSaved;
+    bool wrapWords;
 
-    fileData(string location, GtkTextBuffer *buffer, GtkWidget *statusBar)
+    fileData(string location, GtkWidget *textInput, GtkTextBuffer *buffer, GtkWidget *statusBar)
     {
         tmpFileLocation = location;
+        tmpTextInput = textInput;
         tmpTextBuffer = buffer;
         tmpStatusBar = statusBar;
         isSaved = true;
+        wrapWords = false;
     }
 };
 
@@ -32,3 +36,4 @@ void showSaveFileAsDialog(GtkMenuItem *saveFileAs, fileData *data);
 void showAboutDialog(GtkMenuItem *about);
 
 void textBufferChanged(GtkTextBuffer *buffer, fileData *data);
+void wrapWordsToogled(GtkMenuItem *wrapWords, fileData *data);

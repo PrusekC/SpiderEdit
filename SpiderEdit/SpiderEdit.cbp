@@ -58,6 +58,7 @@
 		<Unit filename="showSaveFileDialog.cpp" />
 		<Unit filename="spiderEditClose.cpp" />
 		<Unit filename="textBufferChanged.cpp" />
+		<Unit filename="wrapWordsToggled.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
